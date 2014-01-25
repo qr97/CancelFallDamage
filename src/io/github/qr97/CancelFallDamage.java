@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CancelFallDamage extends JavaPlugin {
@@ -15,8 +16,9 @@ public class CancelFallDamage extends JavaPlugin {
 			
 			@EventHandler
 			public void onDamage(EntityDamageEvent event) {
-				if((event.getEntity() instanceof Player) &&
-						((Player)event.getEntity()).hasPermission("cancelfalldamage.cancel")) {
+				if((event.getEntity() instanceof Player) 
+						&& (event.getCause().equals(DamageCause.FALL))
+					    && ((Player)event.getEntity()).hasPermission("cancelfalldamage.cancel")) {
 					event.setCancelled(true);
 				}
 			}
