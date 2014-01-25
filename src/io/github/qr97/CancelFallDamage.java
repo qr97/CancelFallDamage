@@ -18,7 +18,7 @@ public class CancelFallDamage extends JavaPlugin {
 			public void onDamage(EntityDamageEvent event) {
 				if((event.getEntity() instanceof Player) 
 						&& (event.getCause().equals(DamageCause.FALL))
-					    && ((Player)event.getEntity()).hasPermission("cancelfalldamage.cancel")) {
+						&& ((Player)event.getEntity()).hasPermission("cancelfalldamage.cancel")) {
 					event.setCancelled(true);
 				}
 			}
